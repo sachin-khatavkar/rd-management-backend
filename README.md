@@ -85,20 +85,6 @@ The system allows creating, updating, deleting RD users and managing their insta
 
 ✅ Retrieve All RD Accounts
 
-🔹 API Features
-
-✅ Create RD User
-
-✅ Update RD User
-
-✅ Delete RD User
-
-✅ Add RD Installment
-
-✅ Fetch Passbook by User ID
-
-✅ Retrieve All RD Accounts
-
 ## 🔹 Author
 Sachin Jivan Khatavkar
 
