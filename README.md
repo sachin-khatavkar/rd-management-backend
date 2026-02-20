@@ -1,51 +1,66 @@
-# Recurring Deposit Management System - Backend
+# Recurring Deposit (RD) Management System - Backend
 
-## 📌 Project Description
-This is a Spring Boot based REST API project for managing Recurring Deposit (RD) accounts. 
-The system allows creating, updating, deleting RD users and managing their installment details.
+## 📌 Project Overview
+This project is a Spring Boot based RESTful API designed to manage Recurring Deposit (RD) accounts in a banking environment.
+
+The system allows creation and management of RD users, installment tracking, and passbook history generation.
 
 ---
 
-## 🔹 Tech Stack
+## 🚀 Tech Stack
 
-- Java
+- Java 17
 - Spring Boot
 - Spring Data JPA
-- Hibernate
-- REST API
+- Hibernate ORM
+- RESTful APIs
+- Gradle
 - MySQL / PostgreSQL
 
 ---
 
-## 🔹 Database Structure
+## 🗂️ Database Schema
 
 ### 🧾 rduser Table
-
-- rid (Primary Key)
-- acno
-- name
-- adharno
-- panno
-- occupation
-- dob
-- gender
-- addr
-- nname
-- naddr
-- nadharno
-- npanno
+| Field | Description |
+|-------|-------------|
+| rid | Primary Key |
+| acno | Account Number |
+| name | Customer Name |
+| adharno | Aadhaar Number |
+| panno | PAN Number |
+| occupation | Occupation |
+| dob | Date of Birth |
+| gender | Gender |
+| addr | Address |
+| nname | Nominee Name |
+| naddr | Nominee Address |
+| nadharno | Nominee Aadhaar |
+| npanno | Nominee PAN |
 
 ---
 
 ### 📘 rdpassbook Table
+| Field | Description |
+|-------|-------------|
+| pid | Primary Key |
+| rid | Foreign Key (rduser) |
+| famt | Fine Amount |
+| rdamt | RD Installment Amount |
+| rddate | Installment Date |
+| flag | Payment Status |
+| lday | Late Days |
 
-- pid (Primary Key)
-- rid (Foreign Key)
-- famt
-- rdamt
-- rddate
-- flag
-- lday
+---
+
+## 🔹 Key API Features
+
+- ✅ Create RD Account
+- ✅ Update RD Account
+- ✅ Delete RD Account
+- ✅ Add Installment Entry
+- ✅ View Passbook by User ID
+- ✅ Retrieve All RD Accounts
 
 ---
 
@@ -54,42 +69,35 @@ The system allows creating, updating, deleting RD users and managing their insta
 ```json
 {
   "acno": "AC1001",
-  "addr": "Pune, Maharashtra",
+  "name": "Rahul Patil",
   "adharno": "111122223333",
-  "agree": true,
+  "panno": "PANAA1234A",
+  "occupation": "Software Engineer",
   "dob": "1994-05-12",
   "gender": "Male",
+  "addr": "Pune, Maharashtra",
+  "nname": "Suresh Patil",
   "naddr": "Pune, Maharashtra",
   "nadharno": "999900001111",
-  "name": "Rahul Patil",
-  "nname": "Suresh Patil",
   "npanno": "NPAN1001A",
-  "occupation": "Software Engineer",
-  "panno": "PANAA1234A",
   "rdamt": 1500,
-  "rddate": "2026-01-10",
-  "rid": 1
+  "rddate": "2026-01-10"
 }
+🔹 How to Run the Project
 
-🔹 API Features
+Clone the repository
 
-✅ Create RD User
+Configure database in application.properties
 
-✅ Update RD User
+Run using:
 
-✅ Delete RD User
-
-✅ Add RD Installment
-
-✅ Fetch Passbook by User ID
-
-✅ Retrieve All RD Accounts
+gradlew.bat bootRun
 
 ## 🔹 Author
 Sachin Jivan Khatavkar
 
 ## 🔹 Project Type
-Academic / Internship / Personal Banking System Project
+Full Stack Banking System Backend (Personal / Academic / Internship Project)
 
 
 
