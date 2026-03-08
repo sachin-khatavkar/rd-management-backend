@@ -3,6 +3,7 @@ package com.cs.demo.cntrl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cs.demo.entity.Rdpassbook;
+import com.cs.demo.entity.Rduser;
 import com.cs.demo.pdto.UserPassbookDTO;
 import com.cs.demo.repo.Passbookrepo;
 import com.cs.demo.service.PassbookService;
@@ -48,9 +50,10 @@ public class Passbookcntrl {
 
 	@GetMapping("/passbookById/{id}")
 	public List<Rdpassbook> getPassbook(@PathVariable("id") int rid) {
-	    List<Rdpassbook> lst = prepo.getAllByRid(rid); // ✅ yaha rid
-	    return lst;
+	    return prepo.getAllByRid(rid);
 	}
+	
+		
 	
 	@GetMapping("/detail")
 	public List<UserPassbookDTO> getDetail() {
@@ -64,16 +67,39 @@ public class Passbookcntrl {
 	        return lst;
 	    }
 	 
-	 @PostMapping("/psave")
-	    public Rdpassbook saverd(@RequestBody Rdpassbook p) {
-	        return prepo.save(p);
-	    }
+
 	 
+	 @PostMapping("/psave")
+	 public Rdpassbook saverd(@RequestBody Rdpassbook p) {
+
+	     int lateDays = p.getLday();
+
+	     if (lateDays > 0) {
+	         p.setFamt(lateDays * 50);
+	     } else {
+	         p.setFamt(0);
+	     }
+
+	     System.out.println("Late Days: " + p.getLday());
+	     System.out.println("Fine Saved: " + p.getFamt());
+
+	     return prepo.save(p);
+	 }
 	 
 	 @PutMapping("/pupdt")
-	    public Rdpassbook updtrdRd(@RequestBody Rdpassbook p) {
-	        return prepo.save(p);
-	    }
+	 public Rdpassbook updtrdRd(@RequestBody Rdpassbook p) {
+
+	     Rdpassbook existing = prepo.findById(p.getPid()).orElseThrow();
+
+	     existing.setRddate(p.getRddate());
+	     existing.setRdamt(p.getRdamt());
+	     existing.setLday(p.getLday());
+
+	     // 🔥 replace fine
+	     existing.setFamt(p.getFamt());
+
+	     return prepo.save(existing);
+	 }
 	 
 	   @DeleteMapping("p/dlt/{id}")
 	    public Object deleteBig(@PathVariable ("id") int id) {

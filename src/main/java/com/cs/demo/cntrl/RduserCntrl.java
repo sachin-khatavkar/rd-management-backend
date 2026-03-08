@@ -4,6 +4,7 @@ package com.cs.demo.cntrl;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,16 @@ public class RduserCntrl {
 	
 	 @GetMapping("/rduser")
 	 public List<Rduser> pb() {
-	        List<Rduser> lst = repo.findAll();
+	        List<Rduser> lst = repo.findAll ();
 	        return lst;
 	    }
+	 
+	 @GetMapping("/rduserByid/{id}")
+	 public Optional<Rduser> pbid (@PathVariable ("id") int id) {
+		 Optional<Rduser> lst = repo.findById(id);
+	        return lst;
+	 }
+
 	 
 	 @PostMapping("/save")
 	    public Rduser saverd(@RequestBody Rduser p) {
