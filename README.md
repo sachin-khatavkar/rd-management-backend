@@ -103,46 +103,19 @@ Benefits:
 - **14% maturity benefit** is applied on total deposited amount.
 - A **completion flag is updated** on the dashboard.
 
----
-
-## 🔹 Advanced Business Features
-
-### 🧾 RD Passbook History
-Each RD account maintains a **passbook entry system** where every installment is recorded.
-
-Details stored in passbook:
-- RD Date
-- RD Amount
-- Late Days
-- Fine Amount
-
-Users can view **complete transaction history**, **total number of transactions**, and **total deposited amount**.
 
 ---
 
-### 💰 Loan Eligibility
-The system calculates **loan eligibility based on RD transaction history**.
+## 📊 Sample Passbook Entry
 
-Rules:
-- Minimum **6 transactions required** to become eligible.
-- Loan amount is calculated based on **total deposited amount**.
+| PID | RID | RD Date | RD Amount | Late Days | Fine Amount |
+|-----|-----|---------|-----------|-----------|-------------|
+| 1 | 1 | 2026-01-10 | 1500 | 0 | 50 |
+| 7 | 1 | 2025-02-10 | 10000 | 3 | 150 |
+| 10 | 1 | 2025-12-01 | 5000 | 0 | 0 |
 
----
-
-### ⚠️ Early Settlement
-If a user closes the RD account **before completing 12 installments**, the system allows early settlement.
-
-Rule:
-- User receives **50% of the deposited amount**.
 
 ---
-
-### 📈 RD Maturity Benefit
-If the user completes **all 12 installments**, the RD account becomes matured.
-
-Benefits:
-- **14% maturity benefit** is applied on total deposited amount.
-- A **completion flag is updated** on the dashboard.
 
 ## 🔹 Sample JSON Request
 
